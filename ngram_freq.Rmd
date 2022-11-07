@@ -1,0 +1,195 @@
+---
+title: "ngram_freq"
+author: "Joemari Pulido"
+date: "2022-09-22"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, error = FALSE, message = FALSE)
+```
+
+##load necessary packages and install ngram from github repository
+
+Sean Carmody et al. created a package 'ngramr' which queries the Google Books Ngram Viewer. The Google Books Ngram Viewer corpus holds about 2 trillion words/phrases. The following code block loads the package 'devtools'. Then, calls the function 'install_github' which enables one to install a repository directly from GitHub into RStudio. syntax is 'install_github("respositoryownner/repositoryname")'. Then, once the repository is loaded, load the 'ngramr' package into RStudio, which then allows you to enter a list of phrases to display a graph showing how often the phrases occurred in a corpus of books.
+
+```{r load packages and install ngram from seancarmody github repository}
+library(devtools)
+install_github("seancarmody/ngramr")
+library(ngramr)
+```
+
+##Race:S01
+
+The following code blocks uses 'ngram' to load in data from Google Books Ngram Viewer. The programmer can choose which words/phrases to load in. For the purposes of my independent study, I inputed words/phrases that could possibly elict race and gender stereotypes. The ggplot and ggplot2 packages then allow the programmer to plot the frequencies in a graph.
+
+```{r plot ngram freq for race_sentences p.1}
+library(ggplot2)
+ng01  <- ngram(c("Janitor", "Criminal", "Black", "White", "Yoga+Teacher", "Business+Executive","McDonalds", "Nail+tech", "Creative+writing+major", "Cardiologist", "Rapper", "Lunch+lady"), year_start = 2000, smoothing = 3,
+  case_ins = FALSE,
+  aggregate = FALSE,
+  count = FALSE,
+  drop_corpus = FALSE,
+  drop_parent = FALSE,
+  drop_all = FALSE,
+  type = FALSE)
+ngram01 <- ggplot(ng01, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth() + theme_google()
+ngram01 + labs(x = "Year", y = "Frequency", title = "ngram freq: potential race sentence stimuli")
+```
+
+#Race:S02
+
+```{r plot ngram freq for race_sentences p. 2}
+library(ggplot2)
+ng02  <- ngram(c("Clinical+psychologist", "Hiphop+dancer", "Physical+therapist", "unemployed", "BurgerKing+employee", "English+Professor", "Administrative+Assistant", "Mathematics+Professor", "speech+pathologist", "real+estate+agent", "highschool+dropout", "Psychology+Professor"),year_start = 2000)
+ngram02 <- ggplot(ng02, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram02 + labs(x = "Year", y = "Frequency", title = "ngram freq: potential race sentence stimuli")
+```
+
+#Race:S03
+
+```{r plot ngram freq for race_sentences p. 3}
+library(ggplot2)
+ng03  <- ngram(c("Bus+driver", "Tech+consultant", "Pilates", "Poet", "Congressman", "Train+conductor", "Social+worker", "college+dropout", "Civil+engineer", "Philosophy+professor", "Maintenance+Staff", "House+keeper"), year_start = 2000)
+ngram03 <- ggplot(ng03, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram03 + labs(x = "Year", y = "Frequency", title = "ngram freq: potential race sentence stimuli")
+```
+  
+#Race:S04
+
+```{r plot ngram freq for race_sentences p.4}
+library(ggplot2)
+ng04  <- ngram(c("secretary", "Lawyer", "Law+Clerk", "Accounting+Professor", "Jazz+musician"), year_start = 2000)
+ngram04 <- ggplot(ng04, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram04 + labs(x = "Year", y = "Frequency", title = "ngram freq: potential race sentence stimuli")
+```
+
+#Gender:S01 The following code chunk plots words or phrases that either match a gender stereotype or are a gender stereotype mismatch.
+
+```{r plot ngram freq for gender_sentences p.1}
+library(ggplot2)
+ng05  <- ngram(c("Stanford+engineering", "Hairdresser","CEO", "House+cleaner", "Data+analyst", "Elementary+teacher", "President","nursing+student", "Business+Executive", "RISD+fashion+major", "Neurologist","preschool+teacher"), year_start = 2000)
+ngram05 <- ggplot(ng05, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth() + theme_google()
+ngram05 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential gender sentence stimuli")
+```
+
+#Gender:S02 The following code chunk plots words or phrases that either match a gender stereotype or are a gender stereotype mismatch.
+
+```{r plot ngram freq for gender_sentences p.2}
+library(ggplot2)
+ng06  <- ngram(c("Chemical+engineer", "makeup+artist", "Cardiologist", "Babysitter", "Psychology+major", "secretary", "weightlifter", "midwife", "Computerscience+major", "Creative+writing+major", "Neurosurgeon", "School+principal"), year_start = 2000)
+ngram06 <- ggplot(ng06, aes(x=Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram06 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential gender sentence stimuli")
+
+```
+
+#Gender:S03 The following code chunk plots words or phrases that either match a gender stereotype or are a gender stereotype mismatch.
+
+```{r plot ngram freq for gender_sentences p.3}
+library(ggplot2)
+ng07  <- ngram(c("Army+general", "English+major", "Industrial+engineer", "Librarian", "Airforce+captain", "social+worker", "carpenter", "teaching+assistant", "therapist", "yoga+instructor", "firefighter", "child+psychologist"), year_start = 2000)
+ngram07 <- ggplot(ng07, aes(x=Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram07 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential gender sentence stimuli")
+
+```
+
+#Gender:S04 The following code chunk plots words or phrases that either match a gender stereotype or are a gender stereotype mismatch.
+
+```{r plot ngram freq for gender_sentences p.4}
+library(ggplot2)
+ng08  <- ngram(c("Architect", "Bus+driver", "Flight+attendant", "Train+conductor", "School+counselor", "Landscaper","Sewing+machinist", "Electrician", "Florist", "Construction+worker", "Office+clerk", "Wall+tiler", "Administrative+assistant", "forklift+driver" ), year_start = 2000)
+ngram08 <- ggplot(ng08, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram08 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential gender sentence stimuli")
+
+```
+
+#Race:WP01 The following code chunk plots the frequencies of words or phrases that either are match a racial stereotpye or are a racial stereotype mismatch.
+
+```{r plot ngram freq for race_wordpairs p.1}
+library(ggplot2)
+ng09  <- ngram(c("Engineer", "Basketball", "CEO", "Criminal", "Achievement", "Homeless", "Doctor", "Janitor", "Cop", "Thief","Racist", "Aggresive"), year_start = 2000)
+ngram09 <- ggplot(ng09, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram09 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential race word pair stimuli")
+```
+
+#Race:WP02 The following code chunk plots the frequencies of words or phrases that either are match a racial stereotpye or are a racial stereotype mismatch.
+
+```{r plot ngram freq for race_wordpairs p.2}
+library(ggplot2)
+ng10  <- ngram(c("Boss", "Poverty", "Redneck", "Diabetes", "Professor", "Cocaine", "Unseasoned", "Spices", "Congressman", "RNB", "Captain", "Gang+member"), year_start = 2000)
+ngram10 <- ggplot(ng10, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram10 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential race word pair stimuli")
+
+```
+
+#Race:WP03 The following code chunk plots the frequencies of words or phrases that either are match a racial stereotpye or are a racial stereotype mismatch.
+
+```{r plot ngram freq for race_wordpairs p.3}
+library(ggplot2)
+ng11  <- ngram(c("Scientist", "Lazy", "General", "Villain", "Industrious", "Ignorant", "Ambitious", "Musical", "Progressive", "Dancer", "Loud", "Hiphop"), year_start = 2000)
+ngram11 <- ggplot(ng11, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth() + theme_google()
+ngram11 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential race word pair stimuli")
+```
+
+#Race:WP04 The following code chunk plots the frequencies of words or phrases that either are match a racial stereotpye or are a racial stereotype mismatch.
+
+```{r plot ngram freq for race_wordpairs p.4}
+library(ggplot2)
+ng12  <- ngram(c("Authority", "Rap", "Privilege", "Violence", "Entitlement", "Healthcare", "Researcher","Teen+mom", "Purity", "Beggar", "Colonizer", "Struggling", "Nurturing", "Angry"), year_start = 2000)
+ngram12 <- ggplot(ng12, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram12 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential race word pair stimuli")
+
+```
+
+#Gender:WP01
+
+```{r plot ngram freq for gender_wordpairs p.1}
+library(ggplot2)
+ng13  <- ngram(c("Nurturing", "Tough", "Beauty", "Engineer", "Nails", "Mechanic", "Counselor", "Welder", "Soft", "Hard", "Weak", "Strong"), year_start = 2000)
+ngram13 <- ggplot(ng13, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram13 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential gender word pair stimuli")
+```
+
+#Gender:WP02
+
+```{r plot ngram freq for gender_wordpairs p.2}
+library(ggplot2)
+ng14  <- ngram(c("Gentle", "CEO", "Teacher", "Doctor", "Lipstick", "Scientist", "Caregiver", "Breadwinner", "Dolls", "Wrestler", "Barbie", "Business"), year_start = 2000)
+ngram14 <- ggplot(ng14, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram14 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential gender word pair stimuli")
+```
+
+#Gender:WP03
+
+```{r plot ngram freq for gender_wordpairs p.3}
+library(ggplot2)
+ng15  <- ngram(c("Cook", "Beer", "Kitchen", "Guns", "Apron", "Protector", "Dependant", "Provider", "Education", "Muscles", "Dress", "Soldier"), year_start = 2000)
+ngram15 <- ggplot(ng15, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram15 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential gender word pair stimuli")
+```
+
+#Gender:WP04
+
+```{r plot ngram freq for gender_wordpairs p.4}
+library(ggplot2)
+ng16  <- ngram(c("Heels", "Warrior", "Salon", "Carpenter", "Masseuse", "Whiskey", "Tailor", "Hammer", "Sewing", "Electrician", "Broom", "Bodybuilder", "Ceramicist", "Wrench"), year_start = 2000)
+ngram16 <- ggplot(ng16, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+ngram16 + labs(x = "Year", y = "Frequency", title = "ngram freq:potential gender word pair stimuli")
+
+```

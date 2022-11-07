@@ -1,0 +1,762 @@
+---
+title: "ngram_freq_stimuli"
+author: "Joemari Pulido"
+date: "2022-09-30"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, error = FALSE)
+```
+
+##Independent Study Intro The current study is Joemari Pulido's independent study advised by Dr. Joanna Morris. The current study aims to explore stereotype violations using the N400 erp component. The current script shows the code used to generate ngram frequencies of stimuli to be used in the current study.
+
+Sean Carmody et al. created and maintain a package 'ngramr' which queries the Google Books Ngram Viewer. The Google Books Ngram Viewer corpus holds about 2 trillion words/phrases. The specific corpus the current study will be using is corpus 'en-2019' which contains data about word frequencies from 1950 up until 2019.
+
+The following code block loads the package 'devtools'. Then, calls the function 'install_github' which enables one to install a repository directly from GitHub into RStudio. syntax is 'install_github("respositoryownner/repositoryname")'. Then, once the repository is loaded, load the 'ngramr' package into RStudio, which then allows you to enter a list of phrases to display a graph showing how often the phrases occurred in a given corpus.
+
+#load necessary packages and install ngram package from seancarmody github repository
+
+```{r load packages and install ngram from seancarmody github repository}
+library(devtools)
+install_github("seancarmody/ngramr")
+library(ngramr)
+library(ggplot2)
+library(tidyverse)
+library(SciViews)
+```
+
+syntax {r find average freq for and store in object} 
+<- ngram(c(""), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+<- mean(\$Frequency) #calculate mean 
+<- log() #calculate log
+
+#r:sent The following code blocks will get the avg frequencies of each stimuli in race:sentences. First, I will limit the year's range to 2000 to 2019. Then, I qill get the average frequencty from 2000 to 2019 for each word or phrase and store it in a variable/object.Then, I will calculate the natural log of the average frequencies of each word. Then, I will create a table/tibble of all the variables containing the natural log of average frequencies for each word. After, I will plot this table in a graph.
+
+#janitor:rsent
+
+```{r find average freq for janitor and store in object }
+Janitor <-ngram("Janitor", corpus = "en-2019", year_start = 2000, year_end = 2019,smoothing = 3, case_ins = FALSE)
+Janitor <- mean(Janitor$Frequency) #calculate mean
+Janitor <-log(Janitor) #calculate log
+```
+
+#engineer:rsent
+
+```{r find average freq for engineer and store in object Engineer}
+Engineer <- ngram(c("Engineer"), corpus = "en-2019", year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+Engineer <- mean(Engineer$Frequency) #calculate mean
+Engineer<- log(Engineer) #calculate log
+```
+
+#basketball:rsent
+
+```{r find average freq for Basketballplayer and store in object Basketball}
+Basketball <- ngram(c("Basketball"), corpus = "en-2019", year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+Basketball <- mean(Basketball$Frequency) #calculate mean
+Basketball <- log(Basketball) #calculate log
+```
+
+#yoga:rsent
+
+```{r find average freq for yoga instructor and store in object Yoga}
+Yoga<- ngram(c("Yoga"), corpus = "en-2019", year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+Yoga <- mean(Yoga$Frequency) #calculate mean 
+Yoga <- log(Yoga) #calculate log
+```
+
+#business:rsent
+
+```{r find average freq for Business executive and store in object Business }
+Business<- ngram(c("Business"), corpus = "en-2019", year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+Business <- mean(Business$Frequency) #calculate mean
+Business <- log(Business) #calculate log
+```
+
+#mcdonalds:rsent
+
+```{r find average freq for McDonalds worker and store in object  Mcdonalds}
+Mcdo<- ngram(c("McDonalds+worker"), corpus = "en-2019", year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+Mcdo<- mean(Mcdo$Frequency) #calculate mean 
+Mcdo <- log(Mcdo) #calculate log
+```
+
+#creative:rsent
+
+```{r find average freq for Creative Writing Major and store in object  Creative }
+Creative<- ngram(c("Creative"), corpus = "en-2019", year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+Creative<- mean(Creative$Frequency) #calculate mean
+Creative <- log(Creative) #calculate log
+```
+
+#nailtech:rsent
+
+```{r find average freq for nail tech and store in object  nailtech }
+nailtech <- ngram(c("Nail+tech"), corpus = "en-2019",year_start = 2000,year_end = 2019, smoothing = 3, case_ins = FALSE)
+nailtech <- mean(nailtech$Frequency) #calculate mean 
+nailtech<- log(nailtech) #calculate log
+```
+
+#cardiologist:rsent
+
+```{r find average freq for cardiologist and store in object  cardiologist}
+cardiologist<- ngram(c("cardiologist"), corpus = "en-2019",year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+cardiologist<- mean(cardiologist$Frequency) #calculate mean 
+cardiologist<- log(cardiologist) #calculate log
+```
+
+#rapper:rsent
+
+```{r find average freq for rapper and store in object rapper }
+rapper<- ngram(c("rapper"),corpus = "en-2019",year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+rapper<- mean(rapper$Frequency) #calculate mean 
+rapper<- log(rapper) #calculate log
+```
+
+#cafeteria:rsent
+
+```{r find average freq for cafeteria and store in object cafeteria }
+cafeteria<- ngram(c("cafeteria+worker"),corpus = "en-2019", year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+cafeteria<- mean(cafeteria$Frequency) #calculate mean 
+cafeteria<- log(cafeteria) #calculate log
+```
+
+#psycholgist:rsent
+
+```{r find average freq for psychologist and store in object psychologist }
+psychologist<- ngram(c("psychologist"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+psychologist<- mean(psychologist$Frequency) #calculate mean 
+psychologist<- log(psychologist) #calculate log
+```
+
+#hiphop:rsent
+
+```{r find average freq for hiphopdancerand store in object  hiphop}
+hiphop<- ngram(c("hiphop+dancer"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+hiphop<- mean(hiphop$Frequency) #calculate mean 
+hiphop<- log(hiphop) #calculate log
+```
+
+#cs:rsent
+
+```{r find average freq for computer scientist and store in object  cs}
+cs<- ngram(c("computer+scientist"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+cs<- mean(cs$Frequency) #calculate mean 
+cs<- log(cs) #calculate log
+```
+
+#counselor:rsent
+
+```{r find average freq for counselor and store in object counselor }
+counselor<- ngram(c("counselor"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+counselor<- mean(counselor$Frequency) #calculate mean 
+counselor<- log(counselor) #calculate log
+```
+
+#physical therapist:rsent
+
+```{r find average freq for physical therapist and store in object pt }
+pt<- ngram(c("physical+therapist"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+pt<- mean(pt$Frequency) #calculate mean 
+pt<- log(pt) #calculate log
+```
+
+#unemployed:rsent
+
+```{r find average freq for unemployed and store in object unemployed}
+unemployed<- ngram(c("unemployed"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+unemployed<- mean(unemployed$Frequency) #calculate mean 
+unemployed<- log(unemployed) #calculate log
+```
+
+#Burgerking:rsent
+
+```{r find average freq for burgerking worker and store in object burgerking }
+burgerKing<- ngram(c("burgerking+worker"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+burgerKing<- mean(burgerKing$Frequency) #calculate mean 
+burgerKing<- log(burgerKing) #calculate log
+```
+
+#EnglishProfessor:rsent
+
+```{r find average freq for English Professor and store in object englishProf }
+englishProf<- ngram(c("English+Professor"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+englishProf<- mean(englishProf$Frequency) #calculate mean 
+englishProf<- log(englishProf) #calculate log
+```
+
+#AdministrativeAssistant:rsent
+
+```{r find average freq for administrative assistant and store in object  adminassi}
+adminassi<- ngram(c("administrative+assistant"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+adminassi<- mean(adminassi$Frequency) #calculate mean 
+adminassi<- log(adminassi) #calculate log
+```
+
+#MathematichsProfessor:rsent
+
+```{r find average freq for mathematics professor and store in object mathProf }
+mathProf<- ngram(c("Mathematics+Professor"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+mathProf<- mean(mathProf$Frequency) #calculate mean 
+mathProf<- log(mathProf) #calculate log
+```
+
+#speechpathologist:rsent
+
+```{r find average freq for speech pathologist and store in object speech  }
+speechpath<- ngram(c("speech+pathologist"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+speechpath<- mean(speechpath$Frequency) #calculate mean 
+speechpath<- log(speechpath) #calculate log
+```
+
+#realestate:rsent
+
+```{r find average freq for realestate agent and store in object realestate }
+realestate<- ngram(c("real+estate+agent"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+realestate<- mean(realestate$Frequency) #calculate mean 
+realestate<- log(realestate) #calculate log
+```
+
+#highschooldropout:rsent
+
+```{r find average freq for high school drop out and store in object highdrop }
+highdrop<- ngram(c("highschool+dropout"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+highdrop<- mean(highdrop$Frequency) #calculate mean 
+highdrop<- log(highdrop) #calculate log
+```
+
+#PsychologyProfessor:rsent
+
+```{r find average freq for psychology professor and store in object psyProf }
+psyProf<- ngram(c("psychology+Professor"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+psyProf<- mean(psyProf$Frequency) #calculate mean 
+psyProf<- log(psyProf) #calculate log
+```
+
+#BusDriver:rsent
+
+```{r find average freq for bus driver and store in object busDriver}
+busDriver<- ngram(c("bus+driver"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+busDriver<- mean(busDriver$Frequency) #calculate mean 
+busDriver<- log(busDriver) #calculate log
+```
+
+#Techconsultant:rsent
+
+```{r find average freq for tech consultant and store in object techconsul}
+techConsul<- ngram(c("tech+consultant"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+techConsul<- mean(techConsul$Frequency) #calculate mean 
+techConsul<- log(techConsul) #calculate log
+```
+
+#pilatesinstructor:rsent
+
+```{r find average freq forpilates instructor and store in object pilates}
+pilates<- ngram(c("pilates+instructor"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+pilates<- mean(pilates$Frequency) #calculate mean 
+pilates<- log(pilates) #calculate log
+```
+
+#poet:rsent
+
+```{r find average freq for poet and store in object poet}
+poet<- ngram(c("poet"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+poet<- mean(poet$Frequency) #calculate mean 
+poet<- log(poet) #calculate log
+```
+
+#congressman:rsent
+
+```{r find average freq for congressman and store in object congressm }
+congressm<- ngram(c("congressman"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+congressm<- mean(congressm$Frequency) #calculate mean 
+congressm<- log(congressm) #calculate log
+```
+
+#trainconductor:rsent
+
+```{r find average freq for trainconductor and store in object traincond}
+traincond<- ngram(c("train+conductor"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+traincond<- mean(traincond$Frequency) #calculate mean 
+traincond<- log(traincond) #calculate log
+```
+
+#socialworker:rsent
+
+```{r find average freq for social worker and store in object socialwork}
+socialwork<- ngram(c("social+worker"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+socialwork<- mean(socialwork$Frequency) #calculate mean 
+socialwork<- log(socialwork) #calculate log
+```
+
+#collegedropout:rsent
+
+```{r find average freq for college drop out and store in object collegedrop}
+collegedrop<- ngram(c("Dropout"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+collegedrop<- mean(collegedrop$Frequency) #calculate mean 
+collegedrop<- log(collegedrop) #calculate log
+```
+
+#civilengineer:rsent
+
+```{r find average freq for civil engineer and store in object civileng}
+civileng<- ngram(c("civil+engineer"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+civileng<- mean(civileng$Frequency) #calculate mean 
+civileng<- log(civileng) #calculate log
+```
+
+#philosophyprofessor:rsent
+
+```{r find average freq for philosophy professor and store in object phlProf}
+phlProf<- ngram(c("philosophy+professor"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+phlProf<- mean(phlProf$Frequency) #calculate mean 
+phlProf<- log(phlProf) #calculate log
+```
+
+#maintenanceworker:rsent
+
+```{r find average freq for maintenance worker and store in object mainWorker}
+mainWorker<- ngram(c("maintenance+worker"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+mainWorker<- mean(mainWorker$Frequency) #calculate mean 
+mainWorker<- log(mainWorker) #calculate log
+```
+
+#housekeeper:rsent
+
+```{r find average freq for housekeeper and store in objecthousekeeper}
+housekeeper<- ngram(c("housekeeper"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+housekeeper<- mean(housekeeper$Frequency) #calculate mean 
+housekeeper<- log(housekeeper) #calculate log
+```
+
+#secretary:rsent
+
+```{r find average freq for secretary and store in object secretary}
+secretary<- ngram(c("secretary"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+secretary<- mean(secretary$Frequency) #calculate mean 
+secretary<- log(secretary) #calculate log
+```
+
+#criminal:rsent
+
+```{r find average freq for criminal and store in object criminal}
+criminal<- ngram(c("criminal"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+criminal<- mean(criminal$Frequency) #calculate mean 
+criminal<- log(criminal) #calculate log
+```
+
+#lawyer:rsent
+
+```{r find average freq for lawyer and store in object lawyer}
+lawyer<- ngram(c("lawyer"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+lawyer<- mean(lawyer$Frequency) #calculate mean 
+lawyer<- log(lawyer) #calculate log
+```
+
+#lawclerk:rsent
+
+```{r find average freq for lawclerk and store in object lawClerk}
+lawClerk<- ngram(c("law+clerk"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+lawClerk<- mean(lawClerk$Frequency) #calculate mean 
+lawClerk<- log(lawClerk) #calculate log
+```
+
+#AccountingProfessor:rsent
+
+```{r find average freq for accounting professor and store in object accProf}
+accProf<- ngram(c("accounting+Professor"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+accProf<- mean(accProf$Frequency) #calculate mean 
+accProf<- log(accProf) #calculate log
+```
+
+#jazzmusician:rsent
+
+```{r find average freq for jazz musician and store in object jazzMus}
+jazzMus<- ngram(c("jazz+musician"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+jazzMus<- mean(jazzMus$Frequency) #calculate mean 
+jazzMus<- log(jazzMus) #calculate log
+```
+
+#gender:sent The following code blocks will get the avg frequencies of each stimuli in gender:sentences. First, I will limit the year's range to 2000 to 2019. Then, I qill get the average frequencty from 2000 to 2019 for each word or phrase and store it in a variable/object.Then, I will calculate the natural log of the average frequencies of each word. Then, I will create a table/tibble of all the variables containing the natural log of average frequencies for each word. After, I will plot this table in a graph.
+
+#Hairdresser:gsent
+
+```{r find average freq for hairdresser and store in object hairdresser}
+hairdresser<- ngram(c("hairdresser"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+hairdresser<- mean(hairdresser$Frequency) #calculate mean 
+hairdresser<- log(hairdresser) #calculate log
+```
+
+#CEO:gsent
+
+```{r find average freq for CEO and store in object CEO }
+CEO<- ngram(c("CEO"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+CEO<- mean(CEO$Frequency) #calculate mean 
+CEO<- log(CEO) #calculate log
+```
+
+#Housecleaner:gsent
+
+```{r find average freq for housecleanerand store in object housecleaner}
+housecleaner<- ngram(c("housecleaner"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+housecleaner<- mean(housecleaner$Frequency) #calculate mean 
+housecleaner<- log(housecleaner) #calculate log
+```
+
+#Data analyst:gsent
+
+```{r find average freq for data analyst and store in object }
+dataanalyst<- ngram(c("data+analyst"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+dataanalyst<- mean(dataanalyst$Frequency) #calculate mean 
+dataanalyst<- log(dataanalyst) #calculate log
+```
+
+#Elementaryteacher:gsent
+
+```{r find average freq for elementary teacher and store in object elemteacher}
+elemteacher<- ngram(c("elementary+teacher"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+elemteacher<- mean(elemteacher$Frequency) #calculate mean 
+elemteacher<- log(elemteacher) #calculate log
+```
+
+#President:gsent
+
+```{r find average freq for president and store in object president}
+president<- ngram(c("president"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+president<- mean(president$Frequency) #calculate mean 
+president<- log(president) #calculate log
+```
+
+#nursing:gsent
+
+```{r find average freq for nurse and store in object nurse}
+nurse<- ngram(c("nurse"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+nurse<- mean(nurse$Frequency) #calculate mean 
+nurse<- log(nurse) #calculate log
+```
+
+#Business:gsent
+
+```{r find average freq for business executive  and store in object executive}
+executive<- ngram(c("business+executive"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+executive<- mean(executive$Frequency) #calculate mean 
+executive<- log(executive) #calculate log
+```
+
+#Fashion:gsent
+
+```{r find average freq for fashion majorand store in object fashion }
+fashion<- ngram(c("fashion+major"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+fashion<- mean(fashion$Frequency) #calculate mean 
+fashion<- log(fashion) #calculate log
+```
+
+#Neurologist:gsent
+
+```{r find average freq for neurologist and store in object neurologist}
+neurologist<- ngram(c("Neurologist"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+neurologist<- mean(neurologist$Frequency) #calculate mean 
+neurologist<- log(neurologist) #calculate log
+```
+
+#preschool:gsent
+
+```{r find average freq for preschool teacher and store in object preschool teacher}
+preTeacher<- ngram(c("preschool+teacher"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+preTeacher<- mean(preTeacher$Frequency) #calculate mean 
+preTeacher<- log(preTeacher) #calculate log
+```
+
+#Chemical engineer:gsent
+
+```{r find average freq for chemical engineer and store in object chemEng }
+chemEng<- ngram(c("chemical+engineer"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+chemEng<- mean(chemEng$Frequency) #calculate mean 
+chemEng<- log(chemEng) #calculate log
+```
+
+#makeupartist:gsent
+
+```{r find average freq for makeupartist and store in object mua }
+mua<- ngram(c("makeup+artist"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+mua<- mean(mua$Frequency) #calculate mean 
+mua<- log(mua) #calculate log
+```
+
+
+#Babysitter:gsent
+
+```{r find average freq for babysitter and store in object babysitter }
+babysitter<- ngram(c("babysitter"), year_start = 2000, year_end = 2019, smoothing = 3, case_ins = FALSE)
+babysitter<- mean(babysitter$Frequency) #calculate mean 
+babysitter<- log(babysitter) #calculate log
+```
+
+#weightlifter:gsent
+
+```{r find average freq for weightlifter and store in object weightlifter}
+weightlifter<- ngram(c("weightlifter"), year_start = 2000, corpus = "en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE)
+weightlifter<- mean(weightlifter$Frequency) #calculate mean 
+weightlifter<- log(weightlifter) #calculate log
+```
+
+#midwife:gsent
+
+```{r find average freq for midwife and store in object midwife}
+midwife<- ngram(c("midwife"), year_start = 2000, corpus = "en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE)
+midwife<- mean(midwife$Frequency) #calculate mean 
+midwife<- log(midwife) #calculate log
+```
+
+#Neurosurgeon:gsent
+
+```{r find average freq for neurosurgeon and store in object neurosurgeon }
+neurosurgeon<- ngram(c("neurosurgeon"), year_start = 2000, corpus = "en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE)
+neurosurgeon<- mean(neurosurgeon$Frequency) #calculate mean 
+neurosurgeon<- log(neurosurgeon) #calculate log
+```
+
+#ArmyGeneral:gsent
+
+```{r find average freq for armygeneral and store in object armygeneral }
+armygeneral<- ngram(c("army+general"), year_start = 2000, corpus = "en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE)
+armygeneral<- mean(armygeneral$Frequency) #calculate mean 
+armygeneral<- log(armygeneral) #calculate log
+```
+
+#Industrial:gsent
+
+```{r find average freq for industrial engineer and store in object industrialEng}
+industrialEng<- ngram(c("Industrial+Engineer"), year_start = 2000, corpus = "en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE)
+industrialEng<- mean(industrialEng$Frequency) #calculate mean 
+industrialEng<- log(industrialEng) #calculate log
+```
+
+#Librarian:gsent
+
+```{r find average freq forlibrarian and store in object librarian}
+librarian<- ngram(c("librarian"), year_start = 2000, corpus = "en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE)
+librarian<- mean(librarian$Frequency) #calculate mean 
+librarian<- log(librarian) #calculate log
+```
+
+#Captain:gsent
+
+```{r find average freq for airforcecaptain and store in object aircaptain}
+aircaptain<- ngram(c("Airforce+Captain"), year_start = 2000, corpus = "en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE)
+aircaptain<- mean(aircaptain$Frequency) #calculate mean 
+aircaptain<- log(aircaptain) #calculate log
+```
+
+#Carpenter:gsent
+
+```{r find average freq for carpenter and store in object carpenter}
+carpenter<- ngram(c("Carpenter"), year_start = 2000, corpus = "en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE)
+carpenter<- mean(carpenter$Frequency) #calculate mean 
+carpenter<- log(carpenter) #calculate log
+```
+
+#Teaching:gsent
+```{r find average freq for teaching assistant and store in object teachingAssistant} 
+teachingAssistant<- ngram(c("Teaching+Assistant"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+teachingAssistant<- mean(teachingAssistant$Frequency) #calculate mean 
+teachingAssistant<- log(teachingAssistant) #calculate log
+```
+
+#Therapist:gsent
+```{r find average freq for Therapist and store in object therapist} 
+therapist<- ngram(c("Therapist"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+therapist<- mean(therapist$Frequency) #calculate mean 
+therapist<- log(therapist) #calculate log
+```
+
+#Firefighter:gsent
+```{r find average freq for firefighter and store in object firefighter} 
+firefighter<- ngram(c("Firefighter"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+firefighter<- mean(firefighter$Frequency) #calculate mean 
+firefighter<- log(firefighter) #calculate log
+```
+
+#Child:gsent
+```{r find average freq for child psychologist and store in object childPsychologist} 
+childPsychologist<- ngram(c("Child+Psychologist"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+childPsychologist<- mean(childPsychologist$Frequency) #calculate mean 
+childPsychologist<- log(childPsychologist) #calculate log
+```
+
+#Architect:gsent
+```{r find average freq for architect and store in object architect} 
+architect<- ngram(c("architect"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+architect<- mean(architect$Frequency) #calculate mean 
+architect<- log(architect) #calculate log
+```
+
+
+#Flight:gsent
+```{r find average freq for flight attendant and store in object flight attendant} 
+flightAttendant<- ngram(c("flight+Attendant"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+flightAttendant<- mean(flightAttendant$Frequency) #calculate mean 
+flightAttendant<- log(flightAttendant) #calculate log
+```
+
+
+#School:gsent
+```{r find average freq for school counselor and store in object schoolCounselor} 
+schoolCounselor<- ngram(c("School+Counselor"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+schoolCounselor<- mean(schoolCounselor$Frequency) #calculate mean 
+schoolCounselor<- log(schoolCounselor) #calculate log
+```
+
+#Landscaper:gsent
+```{r find average freq for landscaper and store in object landscaper} 
+landscaper<- ngram(c("landscaper"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+landscaper<- mean(landscaper$Frequency) #calculate mean 
+landscaper<- log(landscaper) #calculate log
+```
+
+#Sewing:gsent
+```{r find average freq for factoryWorker and store in object factoryWorker} 
+factoryWorker<- ngram(c("Factory+Worker"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+factoryWorker<- mean(factoryWorker$Frequency) #calculate mean 
+factoryWorker<- log(factoryWorker) #calculate log
+```
+
+#Electrician:gsent
+```{r find average freq for electrician and store in object electrician } 
+electrician<- ngram(c("Electrician"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+electrician<- mean(electrician$Frequency) #calculate mean 
+electrician<- log(electrician) #calculate log
+```
+
+#Florist:gsent
+```{r find average freq for florist and store in object florist} 
+florist <- ngram(c("florist"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+florist<- mean(florist$Frequency) #calculate mean 
+florist<- log(florist) #calculate log
+```
+
+#Construction:gsent
+```{r find average freq for construction Worker and store in object constructionWorker}
+constructionWorker<- ngram(c("Construction+Worker"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+constructionWorker<- mean(constructionWorker$Frequency) #calculate mean 
+constructionWorker<- log(constructionWorker) #calculate log
+```
+
+#Office:gsent
+```{r find average freq for office Clerk and store in object officeClerk} 
+officeClerk<- ngram(c("Office+Clerk"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+officeClerk<- mean(officeClerk$Frequency) #calculate mean 
+officeClerk<- log(officeClerk) #calculate log
+```
+
+#Wall:gsent
+```{r find average freq for wall tiler and store in object wallTiler} 
+wallTiler<- ngram(c("Wall+Tiler"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+wallTiler<- mean(wallTiler$Frequency) #calculate mean 
+wallTiler<- log(wallTiler) #calculate log
+```
+
+#Forklift:gsent
+```{r find average freq for forklift driver and store in object forkliftDriver} 
+forkliftDriver<- ngram(c("Forklift+Driver"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+forkliftDriver<- mean(forkliftDriver$Frequency) #calculate mean 
+forkliftDriver<- log(forkliftDriver) #calculate log
+```
+
+
+```{r }
+#create vector with the objects created 
+freq <- c(accProf, adminassi, aircaptain, architect, armygeneral,babysitter, Basketball, burgerKing, busDriver, Business, cafeteria,cardiologist,carpenter,CEO,chemEng,childPsychologist, civileng, collegedrop, congressm, constructionWorker, counselor, Creative, criminal, cs, dataanalyst, electrician, elemteacher, Engineer, englishProf, executive, factoryWorker, fashion, firefighter, flightAttendant, florist, forkliftDriver, hairdresser, highdrop, hiphop, housecleaner, industrialEng, Janitor, jazzMus, landscaper, lawClerk, lawyer, librarian, mainWorker, mathProf, Mcdo, midwife, mua, nailtech, neurologist, neurosurgeon, nurse, officeClerk, phlProf, pilates, poet, president, preTeacher, psychologist, psyProf, pt, rapper, realestate, schoolCounselor, secretary, socialwork, speechpath, teachingAssistant, techConsul, therapist, traincond, unemployed, wallTiler, weightlifter, Yoga)
+#change names to the word 
+names(freq)[1] <- "accProf"
+names(freq)[2] <- "adminassi"
+names(freq)[3] <- "aircaptain"
+names(freq)[4] <- "architect"
+names(freq)[5] <- "armygeneral"
+names(freq)[6] <- "babysitter"
+names(freq)[7] <- "Basketball"
+names(freq)[8] <- "burgerKing"
+names(freq)[9] <- "busDriver"
+names(freq)[10] <- "Business"
+names(freq)[11] <- "cafeteria"
+names(freq)[12] <- "cardiologist"
+names(freq)[13] <- "carpenter"
+names(freq)[14] <- "CEO"
+names(freq)[15] <- "chemEng"
+names(freq)[16] <- "childPsychologist"
+names(freq)[17] <- "civilEng"
+names(freq)[18] <- "collegedrop"
+names(freq)[19] <- "congressm"
+names(freq)[20] <- "constructionWorker"
+names(freq)[21] <- "counselor"
+names(freq)[22] <- "creative"
+names(freq)[23] <- "criminal"
+names(freq)[24] <- "cs"
+names(freq)[25] <- "dataanalyst"
+names(freq)[26] <- "electrician"
+names(freq)[27] <- "elemteacher"
+names(freq)[28] <- "Engineer"
+names(freq)[29] <- "englishProf"
+names(freq)[30] <- "executive"
+names(freq)[31] <- "factoryWorker"
+names(freq)[32] <- "fashion"
+names(freq)[33] <- "firefighter"
+names(freq)[34] <- "flightAttendant"
+names(freq)[35] <- "florist"
+names(freq)[36] <- "forkliftDriver"
+names(freq)[37] <- "hairdresser"
+names(freq)[38] <- "highdrop"
+names(freq)[39] <- "hiphop"
+names(freq)[40] <- "housecleaner"
+names(freq)[41] <- "housekeeper"
+names(freq)[42] <- "industrialEng"
+names(freq)[43] <- "Janitor"
+names(freq)[44] <- "jazzMus"
+names(freq)[45] <- "landscaper"
+names(freq)[46] <- "lawClerk"
+names(freq)[47] <- "lawyer"
+names(freq)[48] <- "librarian"
+names(freq)[49] <- "mainWorker"
+names(freq)[50] <- "mathProf"
+names(freq)[51] <- "Mcdo"
+names(freq)[52] <- "midwife"
+names(freq)[53] <- "mua"
+names(freq)[54] <- "nailtech"
+names(freq)[55] <- "neurologist"
+names(freq)[56] <- "neurosurgeon"
+names(freq)[57] <- "nurse"
+names(freq)[58] <- "officeClerk"
+names(freq)[59] <- "phlProf"
+names(freq)[60] <- "poet"
+names(freq)[61] <- "president"
+names(freq)[62] <- "preTeacher"
+names(freq)[63] <- "psychologist"
+names(freq)[64] <- "psyProf"
+names(freq)[65] <- "pt"
+names(freq)[66] <- "rapper"
+names(freq)[67] <- "realestate"
+names(freq)[68] <- "schoolCounselor"
+names(freq)[69] <- "secretary"
+names(freq)[70] <- "socialwork"
+names(freq)[71] <- "speechpath"
+names(freq)[72] <- "teachingAssistant"
+names(freq)[73] <- "techConsul"
+names(freq)[74] <- "therapist"
+names(freq)[75] <- "traincond"
+names(freq)[76] <- "unemployed"
+names(freq)[77] <- "wallTiler"
+names(freq)[78] <- "weightlifter"
+names(freq)[79] <- "Yoga"
+View(freq)
+```
+
+```{r put word with log(avg freq) in a data frame}
+as.data.frame(freq)
+summary(freq)
+```
+
+```{r conduct t test to see if there is a significant difference in word frequency in stimuli }
+t.test(freq)
+
+```
+p value of the t-test is not less than 0.05 so this suggests that there is no significant difference in the word frequency in my stimuli 
