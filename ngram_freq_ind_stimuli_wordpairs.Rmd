@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, error = FALSE, message = FALSE)
 ```
 
 ##Independent Study Intro The current study is Joemari Pulido's independent study advised by Dr. Joanna Morris. The current study aims to explore stereotype violations using the N400 erp component. The current script shows the code used to generate ngram frequencies of stimuli to be used in the current study.
@@ -452,6 +452,6 @@ summary(freq)
 View(freqdataframe)
 ```
 ```{r conduct t test to see if there is a significant difference in stimuli word frequency }
-t.test(freq)
+t.test(freq, mu = -13)
 ```
 the p value of the t-test is not less that 0.05 so this suggests that there is no significant difference in the word frequency in my stimuli

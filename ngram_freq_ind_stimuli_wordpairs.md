@@ -23,50 +23,10 @@ github repository
 
 ``` r
 library(devtools)
-```
-
-    ## Loading required package: usethis
-
-``` r
 install_github("seancarmody/ngramr")
-```
-
-    ## Skipping install of 'ngramr' from a github remote, the SHA1 (9856fa48) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
-
-``` r
 library(ngramr)
 library(ggplot2)
-```
-
-    ## Warning: package 'ggplot2' was built under R version 4.1.2
-
-``` r
 library(tidyverse)
-```
-
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-
-    ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-    ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-    ## ✔ readr   2.1.2      ✔ forcats 0.5.1 
-    ## ✔ purrr   0.3.5
-
-    ## Warning: package 'tibble' was built under R version 4.1.2
-
-    ## Warning: package 'tidyr' was built under R version 4.1.2
-
-    ## Warning: package 'readr' was built under R version 4.1.2
-
-    ## Warning: package 'dplyr' was built under R version 4.1.2
-
-    ## Warning: package 'stringr' was built under R version 4.1.2
-
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-
-``` r
 library(SciViews)
 ```
 
@@ -547,28 +507,28 @@ freqdataframe<- as.data.frame(freq)
 summary(freq)
 ```
 
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## -18.587 -14.391 -12.948 -13.191 -11.689  -9.141
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    ## -18.587 -14.327 -12.945 -13.174 -11.677  -9.408      25
 
 ``` r
 View(freqdataframe)
 ```
 
 ``` r
-t.test(freq)
+t.test(freq, mu = -13)
 ```
 
     ## 
     ##  One Sample t-test
     ## 
     ## data:  freq
-    ## t = -45.177, df = 49, p-value < 2.2e-16
-    ## alternative hypothesis: true mean is not equal to 0
+    ## t = -0.39339, df = 24, p-value = 0.6975
+    ## alternative hypothesis: true mean is not equal to -13
     ## 95 percent confidence interval:
-    ##  -13.77755 -12.60404
+    ##  -14.08913 -12.25959
     ## sample estimates:
     ## mean of x 
-    ##  -13.1908
+    ## -13.17436
 
 the p value of the t-test is not less that 0.05 so this suggests that
 there is no significant difference in the word frequency in my stimuli
