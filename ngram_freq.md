@@ -40,10 +40,6 @@ packages then allow the programmer to plot the frequencies in a graph.
 
 ![](ngram_freq_files/figure-markdown_strict/plot%20ngram%20freq%20for%20race_sentences%20p.1-1.png)
 
-    ngram01
-
-![](ngram_freq_files/figure-markdown_strict/plot%20ngram%20freq%20for%20race_sentences%20p.1-2.png)
-
 \#Race:S02
 
     library(ggplot2)
