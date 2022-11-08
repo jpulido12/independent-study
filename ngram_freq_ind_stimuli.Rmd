@@ -38,7 +38,7 @@ syntax {r find average freq for and store in object}
 #janitor:rsent
 
 ```{r find average freq for janitor and store in object }
-Janitor <-ngram("Janitor", corpus = "en-2019", year_start = 2000, year_end = 2019,smoothing = 3, case_ins = FALSE)
+Janitor <- ngram("Janitor", corpus = "en-2019", year_start = 2000, year_end = 2019,smoothing = 3, case_ins = FALSE)
 Janitor <- mean(Janitor$Frequency) #calculate mean
 Janitor <-log(Janitor) #calculate log
 ```
@@ -646,7 +646,7 @@ constructionWorker<- log(constructionWorker) #calculate log
 
 #Office:gsent
 ```{r find average freq for office Clerk and store in object officeClerk} 
-officeClerk<- ngram(c("Office+Clerk"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
+officeClerk<- ngram(c("Office+clerk"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 officeClerk<- mean(officeClerk$Frequency) #calculate mean 
 officeClerk<- log(officeClerk) #calculate log
 ```
