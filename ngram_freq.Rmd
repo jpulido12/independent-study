@@ -9,6 +9,8 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, error = FALSE, message = FALSE)
 ```
 
+The following Rmd file describes how I got the ngram frequencies to ensure that my stimuli are balanced in terms of word frequency.
+
 ##load necessary packages and install ngram from github repository
 
 Sean Carmody et al. created a package 'ngramr' which queries the Google Books Ngram Viewer. The Google Books Ngram Viewer corpus holds about 2 trillion words/phrases. The following code block loads the package 'devtools'. Then, calls the function 'install_github' which enables one to install a repository directly from GitHub into RStudio. syntax is 'install_github("respositoryownner/repositoryname")'. Then, once the repository is loaded, load the 'ngramr' package into RStudio, which then allows you to enter a list of phrases to display a graph showing how often the phrases occurred in a corpus of books.
