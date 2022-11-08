@@ -38,6 +38,7 @@ ng01  <- ngram(c("Janitor", "Criminal", "Black", "White", "Yoga+Teacher", "Busin
 ngram01 <- ggplot(ng01, aes(x = Year, y = Frequency, colour = Phrase)) +
   geom_line() + geom_smooth() + theme_google()
 ngram01 + labs(x = "Year", y = "Frequency", title = "ngram freq: potential race sentence stimuli")
+ngram01
 ```
 
 #Race:S02
