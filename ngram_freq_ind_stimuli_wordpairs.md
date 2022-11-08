@@ -1,394 +1,493 @@
----
-title: "ngram_freqstimuli_wordpairs"
-author: "Joemari Pulido"
-date: "`r Sys.Date()`"
-output:
-  md_document:
-    variant: markdown_github
----
+##Independent Study Intro The current study is Joemari Pulido’s
+independent study advised by Dr. Joanna Morris. The current study aims
+to explore stereotype violations using the N400 erp component. The
+current script shows the code used to generate ngram frequencies of
+stimuli to be used in the current study.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+Sean Carmody et al. created and maintain a package ‘ngramr’ which
+queries the Google Books Ngram Viewer. The Google Books Ngram Viewer
+corpus holds about 2 trillion words/phrases. The specific corpus the
+current study will be using is corpus ‘en-2019’ which contains data
+about word frequencies from 1950 up until 2019.
+
+The following code block loads the package ‘devtools’. Then, calls the
+function ‘install_github’ which enables one to install a repository
+directly from GitHub into RStudio. syntax is
+‘install_github(“respositoryownner/repositoryname”)’. Then, once the
+repository is loaded, load the ‘ngramr’ package into RStudio, which then
+allows you to enter a list of phrases to display a graph showing how
+often the phrases occurred in a given corpus.
+
+#load necessary packages and install ngram package from seancarmody
+github repository
+
+``` r
+library(devtools)
 ```
 
-##Independent Study Intro The current study is Joemari Pulido's independent study advised by Dr. Joanna Morris. The current study aims to explore stereotype violations using the N400 erp component. The current script shows the code used to generate ngram frequencies of stimuli to be used in the current study.
+    ## Loading required package: usethis
 
-Sean Carmody et al. created and maintain a package 'ngramr' which queries the Google Books Ngram Viewer. The Google Books Ngram Viewer corpus holds about 2 trillion words/phrases. The specific corpus the current study will be using is corpus 'en-2019' which contains data about word frequencies from 1950 up until 2019.
-
-The following code block loads the package 'devtools'. Then, calls the function 'install_github' which enables one to install a repository directly from GitHub into RStudio. syntax is 'install_github("respositoryownner/repositoryname")'. Then, once the repository is loaded, load the 'ngramr' package into RStudio, which then allows you to enter a list of phrases to display a graph showing how often the phrases occurred in a given corpus.
-
-#load necessary packages and install ngram package from seancarmody github repository
-
-```{r load packages and install ngram from seancarmody github repository}
-library(devtools)
+``` r
 install_github("seancarmody/ngramr")
+```
+
+    ## Skipping install of 'ngramr' from a github remote, the SHA1 (9856fa48) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
+
+``` r
 library(ngramr)
 library(ggplot2)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 4.1.2
+
+``` r
 library(tidyverse)
+```
+
+    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+
+    ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+    ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+    ## ✔ readr   2.1.2      ✔ forcats 0.5.1 
+    ## ✔ purrr   0.3.5
+
+    ## Warning: package 'tibble' was built under R version 4.1.2
+
+    ## Warning: package 'tidyr' was built under R version 4.1.2
+
+    ## Warning: package 'readr' was built under R version 4.1.2
+
+    ## Warning: package 'dplyr' was built under R version 4.1.2
+
+    ## Warning: package 'stringr' was built under R version 4.1.2
+
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+
+``` r
 library(SciViews)
 ```
 
-syntax {r find average freq for and store in object} 
-<- ngram(c(""), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
-<- mean(\$Frequency) #calculate mean 
-<- log() #calculate log
+syntax {r find average freq for and store in object} \<- ngram(c(““),
+year_start = 2000, corpus =”en-2019”, year_end = 2019, smoothing = 3,
+case_ins = FALSE) \<- mean($Frequency) #calculate mean \<- log()
+#calculate log
 
-#r:word pairs The following code blocks will get the avg frequencies of each stimuli in race:wordpairs. First, I will limit the year's range to 2000 to 2019. Then, I will get the average frequencty from 2000 to 2019 for each word or phrase and store it in a variable/object.Then, I will calculate the natural log of the average frequencies of each word. Then, I will create a table/tibble of all the variables containing the natural log of average frequencies for each word. After, I will plot this table in a graph.
+#r:word pairs The following code blocks will get the avg frequencies of
+each stimuli in race:wordpairs. First, I will limit the year’s range to
+2000 to 2019. Then, I will get the average frequencty from 2000 to 2019
+for each word or phrase and store it in a variable/object.Then, I will
+calculate the natural log of the average frequencies of each word. Then,
+I will create a table/tibble of all the variables containing the natural
+log of average frequencies for each word. After, I will plot this table
+in a graph.
 
 #Engineer
-```{r find average freq Engineer for and store in object engineer} 
+
+``` r
 engineer<- ngram(c("Engineer"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 engineer<- mean(engineer$Frequency) #calculate mean 
 engineer<- log(engineer) #calculate log
 ```
 
 #Basketball
-```{r find average freq for Basketball and store in object basketball} 
+
+``` r
 basketball<- ngram(c("basketball"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 basketball<- mean(basketball$Frequency) #calculate mean 
 basketball<- log(basketball) #calculate log
 ```
 
 #CEO
-```{r find average freq for CEO and store in object ceo} 
+
+``` r
 ceo<- ngram(c("CEO"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 ceo<- mean(ceo$Frequency) #calculate mean 
 ceo<- log(ceo) #calculate log
 ```
 
 #Criminal
-```{r find average freq for Criminal and store in object criminal} 
+
+``` r
 criminal <- ngram(c("Criminal"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 criminal<- mean(criminal$Frequency) #calculate mean 
 criminal<- log(criminal) #calculate log
 ```
 
 #Achievement
-```{r find average freq for achievement and store in object achievement} 
+
+``` r
 achievement<- ngram(c("Achievement"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 achievement<- mean(achievement$Frequency) #calculate mean 
 achievement<- log(achievement) #calculate log
 ```
 
 #Homeless
-```{r find average freq for homeless and store in object homeless} 
+
+``` r
 homeless<- ngram(c("Homeless"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 homeless<- mean(homeless$Frequency) #calculate mean 
 homeless<- log(homeless) #calculate log
 ```
 
 #Doctor
-```{r find average freq for Doctor and store in object doctor} 
+
+``` r
 doctor<- ngram(c("Doctor"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 doctor<- mean(doctor$Frequency) #calculate mean 
 doctor<- log(doctor) #calculate log
 ```
 
 #Janitor
-```{r find average freq janitor for and store in object janitor} 
+
+``` r
 janitor<- ngram(c("Janitor"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 janitor<- mean(janitor$Frequency) #calculate mean 
 janitor<- log(janitor) #calculate log
 ```
 
 #Cop
-```{r find average freq for cop and store in object cop} 
+
+``` r
 cop<- ngram(c("Cop"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 cop<- mean(cop$Frequency) #calculate mean 
 cop<- log(cop) #calculate log
 ```
 
 #Thief
-```{r find average freq for thief and store in object thief} 
+
+``` r
 thief<- ngram(c("Thief"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 thief<- mean(thief$Frequency) #calculate mean 
 thief<- log(thief) #calculate log
 ```
 
 #Racist
-```{r find average freq for racist and store in object racist} 
+
+``` r
 racist<- ngram(c("Racist"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 racist<- mean(racist$Frequency) #calculate mean 
 racist<- log(racist) #calculate log
 ```
 
 #Aggresive
-```{r find average freq for aggressive and store in object aggressive} 
+
+``` r
 aggressive<- ngram(c("Aggressive"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 aggressive<- mean(aggressive$Frequency) #calculate mean 
 aggressive<- log(aggressive) #calculate log
 ```
 
 #Boss
-```{r find average freq for boss and store in object boss} 
+
+``` r
 boss<- ngram(c("Boss"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 boss<- mean(boss$Frequency) #calculate mean 
 boss<- log(boss) #calculate log
 ```
 
 #Poverty
-```{r find average freq for poverty and store in object poverty} 
+
+``` r
 poverty<- ngram(c("Poverty"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 poverty<- mean(poverty$Frequency) #calculate mean 
 poverty<- log(poverty) #calculate log
 ```
 
 #Redneck
-```{r find average freq for redneck and store in object redneck} 
+
+``` r
 redneck<- ngram(c("Red+neck"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 redneck<- mean(redneck$Frequency) #calculate mean 
 redneck<- log(redneck) #calculate log
 ```
 
 #Diabetes
-```{r find average freq for diabetes and store in object diabetes} 
+
+``` r
 diabetes<- ngram(c("Diabetes"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 diabetes<- mean(diabetes$Frequency) #calculate mean 
 diabetes<- log(diabetes) #calculate log
 ```
 
 #Professor
-```{r find average freq for professor and store in object professor} 
+
+``` r
 professor<- ngram(c("Professor"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 professor<- mean(professor$Frequency) #calculate mean 
 professor<- log(professor) #calculate log
 ```
 
 #Cocaine
-```{r find average freq for cocaine and store in object cocaine} 
+
+``` r
 cocaine<- ngram(c("Cocaine"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 cocaine<- mean(cocaine$Frequency) #calculate mean 
 cocaine<- log(cocaine) #calculate log
 ```
 
-#Unseasoned 
-```{r find average freq for unseasoned and store in object unseasoned} 
+#Unseasoned
+
+``` r
 unseasoned<- ngram(c("Unseasoned"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 unseasoned<- mean(unseasoned$Frequency) #calculate mean 
 unseasoned<- log(unseasoned) #calculate log
 ```
 
 #Spices
-```{r find average freq for spices and store in object spices} 
+
+``` r
 spices<- ngram(c("Spices"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 spices<- mean(spices$Frequency) #calculate mean 
 spices<- log(spices) #calculate log
 ```
 
 #Congressman
-```{r find average freq for Congressman and store in object congressman} 
+
+``` r
 congressman<- ngram(c("Congressman"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 congressman<- mean(congressman$Frequency) #calculate mean 
 congressman<- log(congressman) #calculate log
 ```
 
 #rnb
-```{r find average freq for RNB and store in object rnb} 
+
+``` r
 rnb<- ngram(c("RNB"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 rnb<- mean(rnb$Frequency) #calculate mean 
 rnb<- log(rnb) #calculate log
 ```
 
 #Captain
-```{r find average freq for captain and store in object captain} 
+
+``` r
 captain<- ngram(c("Captain"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 captain<- mean(captain$Frequency) #calculate mean 
 captain<- log(captain) #calculate log
 ```
 
 #Gang
-```{r find average freq for gang and store in object gang} 
+
+``` r
 gang<- ngram(c("Gang"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 gang<- mean(gang$Frequency) #calculate mean 
 gang<- log(gang) #calculate log
 ```
 
 #Scientist
-```{r find average freq for scientist and store in object scientist} 
+
+``` r
 scientist<- ngram(c("scientist"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 scientist<- mean(scientist$Frequency) #calculate mean 
 scientist<- log(scientist) #calculate log
 ```
 
 #Lazy
-```{r find average freq for lazy and store in object lazy} 
+
+``` r
 lazy<- ngram(c("Lazy"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 lazy<- mean(lazy$Frequency) #calculate mean 
 lazy<- log(lazy) #calculate log
 ```
 
 #General
-```{r find average freq for General and store in object general} 
+
+``` r
 general<- ngram(c("General_NOUN"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 general<- mean(general$Frequency) #calculate mean 
 general<- log(general) #calculate log
 ```
 
 #Villain
-```{r find average freq for villain and store in object villain} 
+
+``` r
 villain<- ngram(c("villain"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 villain<- mean(villain$Frequency) #calculate mean 
 villain<- log(villain) #calculate log
 ```
 
 #Industrious
-```{r find average freq for industrious and store in object industrious} 
+
+``` r
 industrious<- ngram(c("Industrious"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 industrious<- mean(industrious$Frequency) #calculate mean 
 industrious<- log(industrious) #calculate log
 ```
 
 #Ignorant
-```{r find average freq for ignorant and store in object ignorant} 
+
+``` r
 ignorant<- ngram(c("Ignorant"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 ignorant<- mean(ignorant$Frequency) #calculate mean 
 ignorant<- log(ignorant) #calculate log
 ```
 
 #Ambitious
-```{r find average freq for ambitious and store in object ambitious} 
+
+``` r
 ambitious<- ngram(c("Ambitious"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 ambitious<- mean(ambitious$Frequency) #calculate mean 
 ambitious<- log(ambitious) #calculate log
 ```
 
 #Musical
-```{r find average freq for nusical and store in object musical} 
+
+``` r
 musical<- ngram(c("Musical"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 musical<- mean(musical$Frequency) #calculate mean 
 musical<- log(musical) #calculate log
 ```
 
 #Progressive
-```{r find average freq for progressive and store in object progressive} 
+
+``` r
 progressive<- ngram(c("Progressive"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 progressive<- mean(progressive$Frequency) #calculate mean 
 progressive<- log(progressive) #calculate log
 ```
 
 #Dancer
-```{r find average freq for dancer and store in object dancer} 
+
+``` r
 dancer<- ngram(c("Dancer"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 dancer<- mean(dancer$Frequency) #calculate mean 
 dancer<- log(dancer) #calculate log
 ```
 
 #Loud
-```{r find average freq for loud and store in object loud} 
+
+``` r
 loud<- ngram(c("Loud"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 loud <- mean(loud$Frequency) #calculate mean 
 loud<- log(loud) #calculate log
 ```
 
 #Hip Hop
-```{r find average freq for hip hop and store in object hiphop} 
+
+``` r
 hiphop<- ngram(c("Hip+hop"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 hiphop<- mean(hiphop$Frequency) #calculate mean 
 hiphop<- log(hiphop) #calculate log
 ```
 
 #Authority
-```{r find average freq for authority and store in object authority} 
+
+``` r
 authority<- ngram(c("Authority"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 authority<- mean(authority$Frequency) #calculate mean 
 authority<- log(authority) #calculate log
 ```
 
 #Rap
-```{r find average freq for rap and store in object rap } 
+
+``` r
 rap<- ngram(c("Rap"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 rap<- mean(rap$Frequency) #calculate mean 
 rap<- log(rap) #calculate log
 ```
 
 #Privilege
-```{r find average freq for privilege and store in object privilege} 
+
+``` r
 privilege<- ngram(c("Privilege"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 privilege<- mean(privilege$Frequency) #calculate mean 
 privilege<- log(privilege) #calculate log
 ```
 
 #Violence
-```{r find average freq for violenceand store in object violence} 
+
+``` r
 violence<- ngram(c("Violence"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 violence<- mean(violence$Frequency) #calculate mean 
 violence<- log(violence) #calculate log
 ```
 
 #Entitlement
-```{r find average freq for entitlement and store in object entitlement} 
+
+``` r
 entitlement<- ngram(c("entitlement"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 entitlement<- mean(entitlement$Frequency) #calculate mean 
 entitlement<- log(entitlement) #calculate log
 ```
 
 #Healthcare
-```{r find average freq for healthcare and store in object healthcare} 
+
+``` r
 healthcare<- ngram(c("healthcare"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 healthcare<- mean(healthcare$Frequency) #calculate mean 
 healthcare<- log(healthcare) #calculate log
 ```
 
 #Researcher
-```{r find average freq for researcher and store in object researcher} 
+
+``` r
 researcher<- ngram(c("researcher"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 researcher<- mean(researcher$Frequency) #calculate mean 
 researcher<- log(researcher) #calculate log
 ```
 
 #Teen Mom
-```{r find average freq for teenmom and store in objectteenmom} 
+
+``` r
 teenmom<- ngram(c("teen+mom"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 teenmom<- mean(teenmom$Frequency) #calculate mean 
 teenmom<- log(teenmom) #calculate log
 ```
 
 #Purity
-```{r find average freq for purity and store in object purity} 
+
+``` r
 purity<- ngram(c("purity"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 purity<- mean(purity$Frequency) #calculate mean 
 purity<- log(purity) #calculate log
 ```
 
 #Beggar
-```{r find average freq for beggar and store in object beggar} 
+
+``` r
 beggar<- ngram(c("Beggar"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 beggar<- mean(beggar$Frequency) #calculate mean 
 beggar<- log(beggar) #calculate log
 ```
 
 #Colonizer
-```{r find average freq for colonizer and store in object colonizer} 
+
+``` r
 colonizer<- ngram(c("Colonizer"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 colonizer<- mean(colonizer$Frequency) #calculate mean 
 colonizer<- log(colonizer) #calculate log
 ```
 
 #Struggling
-```{r find average freq for struggling and store in object struggling} 
+
+``` r
 struggling<- ngram(c("Struggling"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 struggling<- mean(struggling$Frequency) #calculate mean 
 struggling<- log(struggling) #calculate log
 ```
 
 #Nurturing
-```{r find average freq for nurturing and store in object nurturing} 
+
+``` r
 nurturing<- ngram(c("nurturing"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 nurturing<- mean(nurturing$Frequency) #calculate mean 
 nurturing<- log(nurturing) #calculate log
 ```
 
 #Angry
-```{r find average freq for angry and store in object angry} 
+
+``` r
 angry <- ngram(c("Angry"), year_start = 2000, corpus ="en-2019", year_end = 2019, smoothing = 3, case_ins = FALSE) 
 angry<- mean(angry$Frequency) #calculate mean 
 angry<- log(angry) #calculate log
 ```
 
-#dataframe 
-Create a data frame / tibble with each word and their frequency
+#dataframe Create a data frame / tibble with each word and their
+frequency
 
-```{r create table with objects }
+``` r
 freq <- c(achievement, aggressive, ambitious, angry, authority, basketball, beggar, boss, captain, ceo, cocaine, colonizer, congressman, cop, criminal, dancer, diabetes, doctor, engineer, entitlement, gang, general, healthcare, hiphop, homeless, ignorant, industrious, janitor, lazy, loud, musical, nurturing, poverty, privilege, professor, progressive, purity, racist, rap, redneck, researcher, rnb, scientist, spices, struggling, teenmom, thief, unseasoned, villain, violence)
 names(freq)[1] <- "achievement"
 names(freq)[2] <- "aggressive"
@@ -441,17 +540,35 @@ names(freq)[48] <- "unseasoned"
 names(freq)[49] <- "villain"
 names(freq)[50] <- "violence"
 View(freq)
-
 ```
 
-
-
-```{r put word with log(avg freq) in a data frame}
+``` r
 freqdataframe<- as.data.frame(freq)
 summary(freq)
+```
+
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    ## -18.587 -14.391 -12.948 -13.191 -11.689  -9.141
+
+``` r
 View(freqdataframe)
 ```
-```{r conduct t test to see if there is a significant difference in stimuli word frequency }
+
+``` r
 t.test(freq)
 ```
-the p value of the t-test is not less that 0.05 so this suggests that there is no significant difference in the word frequency in my stimuli
+
+    ## 
+    ##  One Sample t-test
+    ## 
+    ## data:  freq
+    ## t = -45.177, df = 49, p-value < 2.2e-16
+    ## alternative hypothesis: true mean is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -13.77755 -12.60404
+    ## sample estimates:
+    ## mean of x 
+    ##  -13.1908
+
+the p value of the t-test is not less that 0.05 so this suggests that
+there is no significant difference in the word frequency in my stimuli
