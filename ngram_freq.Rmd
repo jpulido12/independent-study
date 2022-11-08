@@ -3,8 +3,8 @@ title: "ngram_freq"
 author: "Joemari Pulido"
 date: "2022-09-22"
 output:
-  html_document:
-    df_print: paged
+    md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}
@@ -62,7 +62,7 @@ ngram03 <- ggplot(ng03, aes(x = Year, y = Frequency, colour = Phrase)) +
   geom_line() + geom_smooth()+ theme_google()
 ngram03 + labs(x = "Year", y = "Frequency", title = "ngram freq: potential race sentence stimuli")
 ```
-  
+
 #Race:S04
 
 ```{r plot ngram freq for race_sentences p.4}
