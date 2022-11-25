@@ -758,6 +758,6 @@ summary(freq)
 ```
 
 ```{r conduct t test to see if there is a significant difference in word frequency in stimuli }
-t.test(freq)
+t.test(freq, mu = -11)
 ```
 p value of the t-test is not less than 0.05 so this suggests that there is no significant difference in the word frequency in my stimuli 

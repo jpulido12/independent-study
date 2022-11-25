@@ -23,6 +23,13 @@ install_github("seancarmody/ngramr")
 library(ngramr)
 ```
 
+```{r}
+blackwhite  <- ngram(c("Black", "White"),year_start = 2000)
+blackwhite<- ggplot(blackwhite, aes(x = Year, y = Frequency, colour = Phrase)) +
+  geom_line() + geom_smooth()+ theme_google()
+blackwhite + labs(x = "Year", y = "Frequency", title = "BlackWhite")
+```
+
 ##Race:S01
 
 The following code blocks uses 'ngram' to load in data from Google Books Ngram Viewer. The programmer can choose which words/phrases to load in. For the purposes of my independent study, I inputed words/phrases that could possibly elict race and gender stereotypes. The ggplot and ggplot2 packages then allow the programmer to plot the frequencies in a graph.
